@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Worker name -> becomes the subdomain: https://nafij-netflix.<your-subdomain>.workers.dev
+  "name": "nafij-netflix",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-09-16",
+  // Required by the OpenNext Cloudflare adapter (Next.js relies on Node.js APIs).
+  "compatibility_flags": ["nodejs_compat", "nodejs_compat_populate_process_env"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  }
+  // Non-secret public env vars (NEXT_PUBLIC_*) can be added here under "vars",
+  // or set in the Cloudflare dashboard under Workers & Pages -> Settings ->
+  // Variables. Secrets (TMDB_TOKEN, SUPABASE_SERVICE_ROLE_KEY, etc.) must be
+  // added as *encrypted* secrets (dashboard "Secrets" tab, or
+  // `wrangler secret put NAME`) — never written into this file.
+}

@@ -1,0 +1,54 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# next.js
+.next/
+out/
+build/
+next-env.d.ts
+
+# production
+dist/
+
+# misc
+.DS_Store
+*.pem
+Thumbs.db
+# stray FUSE/editor lock leftovers (harmless, never part of the source)
+.fuse_hidden*
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files - never commit real secrets
+.env
+.env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel
+
+# cloudflare / opennext
+.open-next/
+.wrangler/
+cloudflare-env.d.ts
+
+# typescript
+*.tsbuildinfo
+
+# editors
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Generated from the private Cloudflare environment file during build
+lib/config/cloudflare-static-env.generated.ts

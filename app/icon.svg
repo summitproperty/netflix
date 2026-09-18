@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Nafij Netflix">
+  <title>Nafij Netflix</title>
+  <!-- Simplified vector favicon distilled from public/brand/source-logo.png
+       (the full artwork is used at larger sizes: public/brand/logo-mark.png). -->
+  <defs>
+    <linearGradient id="fvGold" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#f7dd93" />
+      <stop offset="45%" stop-color="#dfb14f" />
+      <stop offset="100%" stop-color="#9a6f1c" />
+    </linearGradient>
+    <linearGradient id="fvRed" x1="0" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#ff3b46" />
+      <stop offset="55%" stop-color="#d0121f" />
+      <stop offset="100%" stop-color="#7a0a13" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="#09090b" />
+  <!-- film-strip arc -->
+  <path d="M20 21c6-11 22-13 30-4" fill="none" stroke="url(#fvGold)" stroke-width="4.5" stroke-linecap="round" />
+  <!-- gold N -->
+  <path d="M12 50V22h6l9 13.5V22h6v28h-6l-9-13.5V50h-6z" fill="url(#fvGold)" />
+  <!-- red N, overlapping -->
+  <path d="M32 50V22h6l9 13.5V22h6v28h-6l-9-13.5V50h-6z" fill="url(#fvRed)" />
+</svg>

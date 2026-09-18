@@ -1,0 +1,86 @@
+===============================================================================
+  NAFIJ NETFLIX - START HERE
+===============================================================================
+
+GOAL: see the website running in your browser at http://localhost:3000
+
+
+STEP 1 - Install Node.js (one time only)
+-------------------------------------------------------------------------------
+  Download the "LTS" version from   https://nodejs.org
+  Install it with all the default options, then restart your computer.
+  (Check it worked: open Command Prompt and type   node -v   )
+
+
+STEP 2 - Start the website
+-------------------------------------------------------------------------------
+  WINDOWS       double-click   start-local.cmd
+  macOS/LINUX   in a terminal, inside this folder:
+                    chmod +x start-local.sh
+                    ./start-local.sh
+
+  The first run takes 1-3 minutes: it downloads the project's dependencies.
+  Wait until the black window prints   Ready in ...   then open:
+
+                    http://localhost:3000
+
+  The browser also opens by itself after about 12 seconds. If the page looks
+  blank at first, just refresh it - the server is still compiling.
+
+  To stop the server: press Ctrl+C in that window, or close it.
+
+
+STEP 3 - Keys (TMDB already filled in, Supabase still needed)
+-------------------------------------------------------------------------------
+  This folder already contains a ready   .env.local   with YOUR TMDB token and
+  API key in it, so movies and TV series load straight away. That file is
+  gitignored on purpose: never commit it, never upload it anywhere public.
+  You can swap the TMDB values for different ones at any time - nothing else
+  in the project has to change.
+
+  Open   .env.local   with Notepad. Two values are still empty:
+
+    NEXT_PUBLIC_SUPABASE_URL=...       <- sign-in, My List, profile.
+    NEXT_PUBLIC_SUPABASE_ANON_KEY=...     Free: supabase.com -> your project ->
+                                          Project Settings -> API
+
+  These are required before anyone can WATCH, because the site asks for an
+  account first. Browsing works without them.
+
+  Also run the file   supabase/schema.sql   once in Supabase -> SQL Editor.
+  It creates the tables and the security (RLS) rules for accounts.
+
+  Save .env.local, then stop and start the server again (Step 2).
+
+
+ADS (ExoClick) - reserved but empty on purpose
+-------------------------------------------------------------------------------
+  Four blank ad slots already exist in the layout: home page, list pages,
+  detail pages and below the player. They show NOTHING until you fill in the
+  NEXT_PUBLIC_AD_* keys in .env.local. See section 7b of README.md.
+
+
+PUTTING IT ONLINE LATER (your own domain)
+-------------------------------------------------------------------------------
+  See section 9 of README.md. Short version: push this folder to GitHub,
+  import it at vercel.com, paste the same keys under Settings ->
+  Environment Variables, set NEXT_PUBLIC_SITE_URL to your domain, deploy.
+
+
+IF SOMETHING GOES WRONG
+-------------------------------------------------------------------------------
+  "node is not recognized"      -> Node.js is not installed (Step 1).
+  npm install fails             -> network/proxy problem. Try again on a
+                                   different connection.
+  Port 3000 already in use      -> Next.js picks 3001 instead; read the port
+                                   printed in the window and open that one.
+  Empty rows everywhere         -> TMDB_TOKEN is missing or wrong (Step 3).
+  Sign-in does nothing          -> the two Supabase keys are missing (Step 3).
+
+  Want to see the design without installing Node?
+  Open   nafij-netflix-design-preview.html   (in the same outputs folder) in
+  any browser. It is a static preview of the layout and the real player, not
+  the app itself - the app is what you start in Step 2.
+
+  Full documentation: README.md
+===============================================================================

@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   Nafij Netflix design tokens.
+   Re-skin the entire site from here: change --brand and the ink ramp.
+   --------------------------------------------------------------------------- */
+@layer base {
+  :root {
+    color-scheme: dark;
+
+    --brand: #e11d2e;
+    --brand-hover: #ff2d3f;
+    --brand-rgb: 225 29 46;
+    --brand-hover-rgb: 255 45 63;
+    --brand-soft: rgba(225, 29, 46, 0.32);
+
+    /* Gold accent taken from the NN MOVIES artwork */
+    --gold: #dfb14f;
+    --gold-hover: #f7dd93;
+    --gold-rgb: 223 177 79;
+    --gold-hover-rgb: 247 221 147;
+    --gold-soft: rgba(223, 177, 79, 0.28);
+
+    --ink-900: #09090b;
+    --ink-800: #101013;
+    --ink-700: #17171b;
+    --ink-600: #23232a;
+    --ink-900-rgb: 9 9 11;
+    --ink-800-rgb: 16 16 19;
+    --ink-700-rgb: 23 23 27;
+    --ink-600-rgb: 35 35 42;
+
+    --mist-100: #f4f4f5;
+    --mist-300: #d4d4d8;
+    --mist-500: #a1a1aa;
+    --mist-100-rgb: 244 244 245;
+    --mist-300-rgb: 212 212 216;
+    --mist-500-rgb: 161 161 170;
+
+    --nav-height: 4rem;
+  }
+
+  * {
+    border-color: var(--ink-600);
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--ink-900);
+    color: var(--mist-100);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Cinematic top-down glow behind the whole app */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 70vh;
+    pointer-events: none;
+    z-index: -1;
+    background: radial-gradient(
+      120% 60% at 50% -10%,
+      rgba(225, 29, 46, 0.16) 0%,
+      rgba(9, 9, 11, 0) 62%
+    );
+  }
+
+  ::selection {
+    background: var(--brand);
+    color: #fff;
+  }
+
+  /* Visible, consistent keyboard focus everywhere */
+  :focus-visible {
+    outline: 2px solid var(--brand-hover);
+    outline-offset: 2px;
+    border-radius: 0.375rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Horizontal rails: touch-friendly, no visible scrollbar, snap to cards */
+  .rail {
+    @apply flex gap-3 overflow-x-auto overflow-y-hidden scroll-smooth pb-2 sm:gap-4;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rail > * {
+    scroll-snap-align: start;
+  }
+
+  .container-page {
+    @apply mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-10;
+  }
+
+  /*
+   * Standard page wrapper. The header is fixed and transparent over hero art,
+   * so pages that start with normal content add the nav height themselves.
+   */
+  .page-shell {
+    @apply container-page pb-14;
+    padding-top: calc(var(--nav-height) + 1.75rem);
+  }
+
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-lg px-5 py-2.5
+      text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed
+      disabled:opacity-55;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-hover hover:shadow-glow active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply btn border border-white/15 bg-white/10 text-mist-100 backdrop-blur
+      hover:border-white/30 hover:bg-white/20 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply btn text-mist-300 hover:bg-white/10 hover:text-mist-100;
+  }
+
+  .field {
+    @apply w-full rounded-lg border border-ink-600 bg-ink-800/90 px-3.5 py-2.5 text-sm
+      text-mist-100 placeholder:text-mist-500 transition-colors
+      focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/40;
+  }
+
+  .card-surface {
+    @apply rounded-xl border border-white/5 bg-ink-800/70 backdrop-blur;
+  }
+
+  .section-title {
+    @apply text-lg font-semibold tracking-tight text-mist-100 sm:text-xl;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden bg-ink-700;
+  }
+
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0 -translate-x-full animate-shimmer;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.06) 40%,
+      rgba(255, 255, 255, 0.1) 60%,
+      rgba(255, 255, 255, 0)
+    );
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /*
+   * Display ad slot frame (components/ads/AdPlaceholder.tsx).
+   * The two custom properties are set inline per zone from lib/ads/zones.ts, so
+   * the reserved height can differ between mobile and desktop formats without
+   * generating a Tailwind class per size. Nothing here renders unless a slot is
+   * actually configured.
+   */
+  .ad-slot-frame {
+    @apply flex w-full items-center justify-center overflow-hidden rounded-xl
+      border border-white/5 bg-ink-800/40;
+    min-height: var(--ad-slot-min-h, 90px);
+  }
+
+  @media (min-width: 640px) {
+    .ad-slot-frame {
+      min-height: var(--ad-slot-desktop-min-h, var(--ad-slot-min-h, 90px));
+    }
+  }
+
+  /*
+   * Reserved space for the fixed Browse Mode ad dock
+   * (components/ads/dock/BrowseAdDock.tsx), toggled on <body> only while the
+   * dock is actually visible (Browse Mode, not Watch Mode) so page content
+   * and the footer are never permanently hidden behind it.
+   */
+  body.has-ad-dock {
+    padding-bottom: 132px;
+  }
+
+  @media (max-width: 640px) {
+    body.has-ad-dock {
+      padding-bottom: 108px;
+    }
+  }
+}
