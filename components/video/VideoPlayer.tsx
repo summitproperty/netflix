@@ -185,20 +185,19 @@ export function VideoPlayer({
             feature can never play over each other. */}
         {!adGate ? (
           <iframe
-            key={attempt}
-            src={source.embedUrl}
-            title={`${title} player`}
-            className="absolute inset-0 h-full w-full"
-            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-            allowFullScreen={source.allowFullscreen}
-            referrerPolicy={source.referrerPolicy}
-          sandbox="allow-scripts allow-same-origin allow-presentation allow-forms"
-allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-            onLoad={() => {
-              setLoaded(true);
-              setTimedOut(false);
-            }}
-          />
+  key={attempt}
+  src={source.embedUrl}
+  title={${title} player}
+  className="absolute inset-0 h-full w-full"
+  sandbox="allow-scripts allow-same-origin allow-presentation allow-forms"
+  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+  allowFullScreen={source.allowFullscreen}
+  referrerPolicy={source.referrerPolicy}
+  onLoad={() => {
+    setLoaded(true);
+    setTimedOut(false);
+  }}
+/>
         ) : null}
 
         {!loaded && !timedOut && !adGate ? (
