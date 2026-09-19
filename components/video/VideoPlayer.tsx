@@ -184,7 +184,7 @@ export function VideoPlayer({
         {/* The embed only mounts once no pre-roll is pending, so an ad and the
             feature can never play over each other. */}
         {!adGate ? (
-          <iframe
+         <iframe
   key={attempt}
   src={source.embedUrl}
   title={${title} player}
