@@ -192,7 +192,7 @@ export function VideoPlayer({
             allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
             allowFullScreen={source.allowFullscreen}
             referrerPolicy={source.referrerPolicy}
-            sandbox="allow-scripts allow-same-origin allow-presentation allow-forms"
+           sandbox="allow-scripts allow-same-origin allow-presentation allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
             loading="eager"
             onLoad={() => {
               setLoaded(true);
