@@ -52,8 +52,13 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },
-  robots: { index: true, follow: true },
-  alternates: { canonical: "/" },
+ robots: { index: true, follow: true },
+verification: {
+  other: {
+    "6a97888e-site-verification": "1fa6096f949b55e4b4ccf7fe4db6eca7",
+  },
+},
+alternates: { canonical: "/" },
 };
 
 export const viewport: Viewport = {
