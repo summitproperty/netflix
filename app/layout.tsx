@@ -55,7 +55,8 @@ export const metadata: Metadata = {
  robots: { index: true, follow: true },
 verification: {
   other: {
-    "6a97888e-site-verification": "1fa6096f949b55e4b4ccf7fe4db6eca7",
+   "d6781cf61265948740ec231e4ec191a58ba41984":
+  "d6781cf61265948740ec231e4ec191a58ba41984",
   },
 },
 alternates: { canonical: "/" },
